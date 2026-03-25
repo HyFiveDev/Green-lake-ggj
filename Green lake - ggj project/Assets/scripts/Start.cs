@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class StartSceneLoader : MonoBehaviour
+public class StartSceneLoaders : MonoBehaviour
 {
     void Start()
     {

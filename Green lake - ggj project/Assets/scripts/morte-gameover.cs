@@ -7,7 +7,7 @@ public class PlayerDeath : MonoBehaviour
     {
         // Verifica se o que atingiu o player foi a bala (Tag "Bullet")
         // ou um inimigo (Tag "Enemy")
-        if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Inimigo")) ;
         {
             // Se for um tiro, você pode destruir o projétil para ele não atravessar o corpo
             if (collision.gameObject.CompareTag("Bullet"))

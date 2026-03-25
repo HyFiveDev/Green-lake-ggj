@@ -1,42 +1,57 @@
-using UnityEngine;
-using UnityEngine.UI;
+Ôªøusing UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class vida_dano : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
-    public int vidaMaxima = 100;
-    public int vidaAtual;
-    public Slider barraDeVida; // Arraste o Slider do Canvas aqui
+    public int vida = 20;
+    public int danoPorContato = 10;
 
-    void Start()
+    [Header("Barra de HP")]
+    public SpriteRenderer barraHP; // objeto filho
+    public Sprite imagem1; // normal
+    public Sprite imagem2; // quando toma dano
+
+    private void Start()
     {
-        vidaAtual = vidaMaxima;
-        if (barraDeVida != null)
+        barraHP.sprite = imagem1; // come√ßa com imagem normal
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Inimigo"))
         {
-            barraDeVida.maxValue = vidaMaxima;
-            barraDeVida.value = vidaMaxima;
+            TomarDano(danoPorContato);
+            Destroy(collision.gameObject);
         }
     }
 
-    public void TomarDano(int dano)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        vidaAtual -= dano;
-        if (barraDeVida != null) barraDeVida.value = vidaAtual;
+        if (collision.CompareTag("Inimigo"))
+        {
+            TomarDano(danoPorContato);
+            Destroy(collision.gameObject);
+        }
+    }
 
-        if (vidaAtual <= 0) Morrer();
+    void TomarDano(int dano)
+    {
+        vida -= dano;
+
+        // üî¥ troca pra imagem de dano
+        barraHP.sprite = imagem2;
+
+        Debug.Log("Vida atual: " + vida);
+
+        if (vida <= 0)
+        {
+            Morrer();
+        }
     }
 
     void Morrer()
     {
-        if (gameObject.CompareTag("player"))
-        {
-            // LÛgica de Respawn que vocÍ j· tinha
-            transform.position = Vector3.zero; // Exemplo
-            vidaAtual = vidaMaxima;
-            if (barraDeVida != null) barraDeVida.value = vidaMaxima;
-        }
-        else
-        {
-            Destroy(gameObject); // Inimigo morre e some
-        }
+        Debug.Log("Player morreu!");
+        SceneManager.LoadScene("Game_Over");
     }
 }

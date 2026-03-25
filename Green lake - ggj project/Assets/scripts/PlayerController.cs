@@ -4,25 +4,23 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     // Input System
-    InputSystem_Actions inputSystemActions;
-    InputAction move;
-    InputAction jump;
+    private InputSystem_Actions inputSystemActions;
+    private InputAction move;
+    private InputAction jump;
 
     // Componentes
     private Rigidbody2D rb;
 
-    // Configura��es
+    // Configurações
     public float speed = 5f;
     public float jumpForce = 10f;
 
-    // Controle do ch�o
+    // Controle do chão
     private bool isGrounded;
 
     // Valores do stick
-    [Range(-1f, 1f)]
-    public float inputHorizontal;
-    [Range(-1f, 1f)]
-    public float inputVertical;
+    [Range(-1f, 1f)] public float inputHorizontal;
+    [Range(-1f, 1f)] public float inputVertical;
 
     void Awake()
     {
@@ -30,6 +28,7 @@ public class PlayerController : MonoBehaviour
         move = inputSystemActions.Player.Move;
         jump = inputSystemActions.Player.Jump;
 
+        // CORREÇÃO: precisa especificar o tipo
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -47,24 +46,25 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // L� o input do stick
+        // CORREÇÃO: precisa especificar o tipo
         Vector2 input = move.ReadValue<Vector2>();
+
         inputHorizontal = input.x;
         inputVertical = input.y;
 
-        
-            rb.linearVelocity = new Vector2(inputHorizontal * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(inputHorizontal * speed, rb.linearVelocity.y);
+        if (isGrounded)
+        {
+            // CORREÇÃO: velocity foi substituído por linearVelocity
 
-            // Pulo
             if (jump.triggered)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-                isGrounded = false; // evita pulo duplo
+                isGrounded = false;
             }
-    
+        }
     }
 
-    // Detecta contato com o ch�o
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -81,4 +81,3 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
-

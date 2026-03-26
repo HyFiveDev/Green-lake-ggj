@@ -508,14 +508,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Por gera\xE7\xF5es, vivemos em paz. N\xF3s e a natureza, como um s\xF3
-    ser. At\xE9 os homens de pele branca chegarem. Eles mataram nossas \xE1rvores,
-    destru\xEDram nossos rios. Roubaram nossos recursos.\r\nOs animais que n\xE3o
-    morreram, fugiram para longe; e nossas terras j\xE1 n\xE3o s\xE3o capazes de
-    nos prover o alimento. Famintos, desprotegidos, vulner\xE1veis. Gra\xE7as aos
-    esfor\xE7os daqueles dem\xF4nios p\xE1lidos, nosso ador\xE1vel povo padece dia
-    ap\xF3s dia... a fome se tornou comum.\r\nVoc\xEA \xE9 a nossa \xFAltima esperan\xE7a.
-    Use o gancho de nossos ancestrais e derrote o chefe da f\xE1brica."
+  m_text: 'For generations, we lived in peace. We and nature, as one being. Until
+    the white-skinned men arrived. They killed our trees, destroyed our rivers. They
+    stole our resources.
+
+    The animals that did not die fled far away; and our
+    lands are no longer capable of providing us with food. Hungry, unprotected, vulnerable.
+    Thanks to the efforts of those pale demons, our lovely people suffer day after
+    day... hunger has become common.
+
+    You are our last hope. Use the hook of
+    our ancestors and defeat the factory boss.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

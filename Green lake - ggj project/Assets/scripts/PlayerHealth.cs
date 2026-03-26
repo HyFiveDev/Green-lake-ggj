@@ -15,15 +15,7 @@ public class PlayerHealth : MonoBehaviour
     {
         barraHP.sprite = imagem1; // começa com imagem normal
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Inimigo"))
-        {
-            TomarDano(danoPorContato);
-            Destroy(collision.gameObject);
-        }
-    }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -38,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
     {
         vida -= dano;
 
-        // 🔴 troca pra imagem de dano
+        // troca pra imagem de dano
         barraHP.sprite = imagem2;
 
         Debug.Log("Vida atual: " + vida);

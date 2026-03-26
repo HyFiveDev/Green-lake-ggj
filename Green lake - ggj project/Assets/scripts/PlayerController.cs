@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     private InputAction jump;
 
     private Rigidbody2D rb;
-    private Animator anim; // Componente de animação
+    private Animator anim;
+    private bool ataque = false;// Componente de animação
     private SpriteRenderer sprite; // Para virar o personagem
 
     public float speed = 5f;
@@ -41,14 +42,18 @@ public class PlayerController : MonoBehaviour
         // Movimentação
         rb.linearVelocity = new Vector2(inputHorizontal * speed, rb.linearVelocity.y);
 
-        // --- LÓGICA DE ANIMAÇÃO ---
-        if (anim != null)
+        anim.SetBool("Running", inputHorizontal != 0);
+        if (Input.GetMouseButtonDown(1))
         {
-            // Envia o valor absoluto (sempre positivo) para o parâmetro "Speed"
-            // Se inputHorizontal for 0, Speed é 0. Se for 1 ou -1, Speed é 1.
-            anim.SetFloat("Speed", Mathf.Abs(inputHorizontal));
+            ataque = true;
         }
-
+        else
+        {
+            ataque = false;
+        }
+        
+        anim.SetBool("Attack", ataque);
+        
         // --- LÓGICA DE VIRAR O SPRITE (FLIP) ---
         if (inputHorizontal > 0) sprite.flipX = false;
         else if (inputHorizontal < 0) sprite.flipX = true;

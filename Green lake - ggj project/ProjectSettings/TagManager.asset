@@ -7,6 +7,8 @@ TagManager:
   - Undefined
   - Ground
   - player
+  - Inimigo
+  - Agua
   layers:
   - Default
   - TransparentFX
